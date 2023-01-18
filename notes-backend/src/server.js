@@ -1,3 +1,5 @@
+/* eslint-disable linebreak-style */
+// eslint-disable-next-line import/no-extraneous-dependencies
 const Hapi = require("@hapi/hapi");
 
 const init = async () => {
