@@ -5,7 +5,7 @@ const addNotesHandler = (request, h) => {
   // create note property
   const { title, tags, body } = request.payload; // put data from client
   const id = nanoid(16); // create unique id
-  const createdAt = new Date();
+  const createdAt = new Date().toISOString();
   const updatedAt = createdAt;
   // create new note object
   const newNote = {
@@ -66,7 +66,7 @@ const getNoteByIdHandler = (request, h) => {
 const updateNotesHandler = (request, h) => {
   const { id } = request.params;
   const { title, tags, body } = request.payload;
-  const updatedAt = new Date();
+  const updatedAt = new Date().toISOString();
   const index = notes.findIndex((note) => note.id === id);
 
   if (index !== -1) {
