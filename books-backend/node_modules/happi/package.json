@@ -1,0 +1,31 @@
+{
+  "name": "happi",
+  "version": "0.9.1",
+  "description": "Happi-based Web API Framework",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "node test/start.js | tap-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodevn/happi.git"
+  },
+  "keywords": [
+    "happi",
+    "web-api",
+    "framework",
+    "api",
+    "generate"
+  ],
+  "author": "Vunb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nodevn/happi/issues"
+  },
+  "homepage": "https://github.com/nodevn/happi#readme",
+  "devDependencies": {
+    "supertest": "^2.0.1",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.3"
+  }
+}
