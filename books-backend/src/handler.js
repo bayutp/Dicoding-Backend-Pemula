@@ -15,10 +15,10 @@ const addBookHandler = (request, h) => {
 
   const id = nanoid(16);
   const finished = pageCount === readPage;
-  const insertedAt = new Date().toISOString;
+  const insertedAt = new Date().toISOString();
   const updatedAt = insertedAt;
 
-  if (name === null || name === "") {
+  if (name === undefined) {
     const response = h.response({
       status: "fail",
       message: "Gagal menambahkan buku. Mohon isi nama buku",
@@ -77,7 +77,6 @@ const addBookHandler = (request, h) => {
 const getAllBooksHandler = (request, h) => {
   const { name, reading, finished } = request.query;
 
-  console.log(name);
   if (name !== undefined) {
     return {
       status: "success",
@@ -86,6 +85,38 @@ const getAllBooksHandler = (request, h) => {
           .filter((book) =>
             book.name.toLowerCase().includes(name.toLowerCase())
           )
+          .map((book) => {
+            return {
+              id: book.id,
+              name: book.name,
+              publisher: book.publisher,
+            };
+          }),
+      },
+    };
+  }
+  if (reading !== undefined) {
+    return {
+      status: "success",
+      data: {
+        books: books
+          .filter((book) => book.reading == reading)
+          .map((book) => {
+            return {
+              id: book.id,
+              name: book.name,
+              publisher: book.publisher,
+            };
+          }),
+      },
+    };
+  }
+  if (finished !== undefined) {
+    return {
+      status: "success",
+      data: {
+        books: books
+          .filter((book) => book.finished == finished)
           .map((book) => {
             return {
               id: book.id,
@@ -149,11 +180,11 @@ const updateBookHandler = (request, h) => {
   } = request.payload;
 
   const finished = pageCount === readPage;
-  const updatedAt = new Date().toISOString;
+  const updatedAt = new Date().toISOString();
 
   const index = books.findIndex((book) => book.id === id);
 
-  if (name === null || name === "") {
+  if (name === undefined) {
     const response = h.response({
       status: "fail",
       message: "Gagal memperbarui buku. Mohon isi nama buku",
