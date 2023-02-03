@@ -100,7 +100,7 @@ const getAllBooksHandler = (request, h) => {
       status: "success",
       data: {
         books: books
-          .filter((book) => book.reading == reading)
+          .filter((book) => book.reading === Boolean(parseInt(reading)))
           .map((book) => {
             return {
               id: book.id,
@@ -116,7 +116,7 @@ const getAllBooksHandler = (request, h) => {
       status: "success",
       data: {
         books: books
-          .filter((book) => book.finished == finished)
+          .filter((book) => book.finished === Boolean(parseInt(finished)))
           .map((book) => {
             return {
               id: book.id,
